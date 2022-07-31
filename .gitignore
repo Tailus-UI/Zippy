@@ -8,3 +8,4 @@ composer.lock
 node_modules/
 tests/Tests/Resource/Teleporter/plop-badge/
 /.idea
+.phpunit.result.cache
