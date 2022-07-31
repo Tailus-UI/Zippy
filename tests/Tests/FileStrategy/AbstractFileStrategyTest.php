@@ -8,9 +8,6 @@ use Alchemy\Zippy\Exception\RuntimeException;
 
 class AbstractFileStrategyTest extends TestCase
 {
-    /**
-     * @expectedException   \InvalidArgumentException
-     */
     public function testGetAdaptersWithNoDefinedServices()
     {
         $container = AdapterContainer::load();
@@ -22,9 +19,9 @@ class AbstractFileStrategyTest extends TestCase
                 'Unknown\Services'
             )));
 
-
+        $this->expectException(\InvalidArgumentException::class);
         $adapters = $stub->getAdapters();
-        $this->assertInternalType('array', $adapters);
+        $this->assertIsArray($adapters);
         $this->assertCount(0, $adapters);
     }
 
@@ -41,7 +38,7 @@ class AbstractFileStrategyTest extends TestCase
             )));
 
         $adapters = $stub->getAdapters();
-        $this->assertInternalType('array', $adapters);
+        $this->assertIsArray($adapters);
         $this->assertCount(2, $adapters);
         foreach ($adapters as $adapter) {
             $this->assertInstanceOf('Alchemy\\Zippy\\Adapter\\AdapterInterface', $adapter);
@@ -73,7 +70,7 @@ class AbstractFileStrategyTest extends TestCase
             )));
 
         $adapters = $stub->getAdapters();
-        $this->assertInternalType('array', $adapters);
+        $this->assertIsArray($adapters);
         $this->assertCount(1, $adapters);
         foreach ($adapters as $adapter) {
             $this->assertSame($adapterMock, $adapter);

@@ -19,11 +19,11 @@ class TeleporterContainerTest extends TestCase
     }
     /**
      * @covers \Alchemy\Zippy\Resource\TeleporterContainer::fromResource
-     * @expectedException \Alchemy\Zippy\Exception\InvalidArgumentException
      */
     public function testFromResourceThatFails()
     {
         $container = TeleporterContainer::load();
+        $this->expectException(\Alchemy\Zippy\Exception\InvalidArgumentException::class);
         $container->fromResource($this->createResource(array()));
     }
 

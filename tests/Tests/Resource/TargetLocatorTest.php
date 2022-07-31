@@ -16,30 +16,24 @@ class TargetLocatorTest extends TestCase
         $this->assertEquals($expected, $locator->locate($context, $resource));
     }
 
-    /**
-     * @expectedException Alchemy\Zippy\Exception\TargetLocatorException
-     */
     public function testLocateThatShouldFail()
     {
         $locator = new TargetLocator();
+        $this->expectException(\Alchemy\Zippy\Exception\TargetLocatorException::class);
         $locator->locate("some-context", array());
     }
 
-    /**
-     * @expectedException Alchemy\Zippy\Exception\TargetLocatorException
-     */
     public function testLocateThatShouldFail2()
     {
         $locator = new TargetLocator();
+        $this->expectException(\Alchemy\Zippy\Exception\TargetLocatorException::class);
         $locator->locate("some-context", fopen('file://', 'rb'));
     }
 
-    /**
-     * @expectedException Alchemy\Zippy\Exception\TargetLocatorException
-     */
     public function testLocateThatShouldFail3()
     {
         $locator = new TargetLocator();
+        $this->expectException(\Alchemy\Zippy\Exception\TargetLocatorException::class);
         $locator->locate(__DIR__, __DIR__ . '/input/path/to/a/../local/file-non-existent.ext');
     }
 
